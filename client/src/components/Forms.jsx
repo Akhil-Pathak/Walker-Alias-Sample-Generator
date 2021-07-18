@@ -320,7 +320,7 @@ class InputForm extends Component {
                 <form onSubmit={this.handleGenerate}>
                   <div className="form-group row">{items}</div>
                   <button type="submit" className="btn btn-primary my-1">
-                    Generate
+                    Generate Samples
                   </button>
                 </form>
               </div>
