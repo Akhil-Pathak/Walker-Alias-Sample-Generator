@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
+import "chartjs-plugin-datalabels";
 
 class InputForm extends Component {
   constructor(props) {
@@ -29,6 +30,12 @@ class InputForm extends Component {
       ],
     };
     this.options = {
+      plugins: {
+        datalabels: {
+          display: true,
+          color: "white",
+        },
+      },
       scales: {
         yAxes: [
           {
