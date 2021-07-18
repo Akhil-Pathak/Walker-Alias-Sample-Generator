@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Form, Col, Button, Row } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
-import "chartjs-plugin-datalabels";
+import { Chart } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+Chart.register(ChartDataLabels);
 
 class InputForm extends Component {
   constructor(props) {
@@ -30,12 +32,6 @@ class InputForm extends Component {
       ],
     };
     this.options = {
-      plugins: {
-        datalabels: {
-          display: true,
-          color: "white",
-        },
-      },
       scales: {
         yAxes: [
           {
@@ -50,6 +46,14 @@ class InputForm extends Component {
             stacked: true,
           },
         ],
+      },
+      plugins: {
+        datalabels: {
+          anchor: "end",
+          align: "top",
+          display: true,
+          color: "black",
+        },
       },
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -112,8 +116,8 @@ class InputForm extends Component {
 
     const reducer = (accumulator, curr) => accumulator + curr;
     const sum = probabilty_requested.reduce(reducer);
-    this.data.datasets[0].data = probabilty_requested.map(
-      (norm) => (norm * this.state.totalNum) / sum
+    this.data.datasets[0].data = probabilty_requested.map((norm) =>
+      ((norm * this.state.totalNum) / sum).toFixed(2)
     );
     //console.log(this.state.final_pckg);
     event.preventDefault();
@@ -339,7 +343,11 @@ class InputForm extends Component {
               <p className="text-center">
                 (Please refresh to make new samples)
               </p>
-              <Bar data={this.data} options={this.options} />
+              <Bar
+                plugins={ChartDataLabels}
+                data={this.data}
+                options={this.options}
+              />
             </div>
           </div>
         );
