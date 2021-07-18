@@ -12,7 +12,7 @@ import path from 'path';
 dotenv.config()
 const app = express();
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, './client/public')));;
+app.use(express.static(path.join(__dirname, './client/build')));;
 const port = process.env.PORT || 5000;
 
 //Middlewares------------------------------------------
@@ -83,7 +83,7 @@ app.get('/prob/downloaddata/:userid', (req,res) => {
 })
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'./client/public/index.html'));
+    res.sendFile(path.join(__dirname+'./client/build/index.html'));
   });
 
 // Listner -----------------------------------------------------------
