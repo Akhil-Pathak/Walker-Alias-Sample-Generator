@@ -13,7 +13,7 @@ dotenv.config()
 const app = express();
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, './client/build')));;
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 //Middlewares------------------------------------------
 app.use(cors());
